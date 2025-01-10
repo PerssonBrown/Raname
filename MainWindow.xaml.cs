@@ -13,6 +13,7 @@ namespace Raname
         public MainWindow()
         {
             InitializeComponent();
+            this.IsManipulationEnabled = true;
             InitializeConfig();
         }
 
@@ -71,7 +72,6 @@ namespace Raname
             {
                 isDragMoved = true;
                 DragMove();
-                
             }
         }
 
@@ -80,6 +80,36 @@ namespace Raname
             if (isDragMoved)
             {
                 RandomBtn.ReleaseMouseCapture();
+                isDragMoved = false;
+                e.Handled = true;
+            }
+        }
+
+        private void Window_TouchDown(object sender, TouchEventArgs e)
+        {
+            pressPosition = e.GetTouchPoint(this).Position;
+            this.CaptureTouch(e.TouchDevice);
+        }
+
+        private void Window_TouchMove(object sender, TouchEventArgs e)
+        {
+            isDragMoved = true;
+
+            var currentPoint = e.GetTouchPoint(this).Position;
+
+            var offsetX = currentPoint.X - pressPosition.X;
+            var offsetY = currentPoint.Y - pressPosition.Y;
+
+            this.Left += offsetX;
+            this.Top += offsetY;
+        }
+
+        private void Window_TouchUp(object sender, TouchEventArgs e)
+        {
+            if (isDragMoved)
+            {
+                RandomBtn.ReleaseMouseCapture();
+                this.ReleaseTouchCapture(e.TouchDevice);
                 isDragMoved = false;
                 e.Handled = true;
             }

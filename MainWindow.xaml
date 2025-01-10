@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Raname"
         mc:Ignorable="d"
-        Title="MainWindow" Height="148" Width="240" WindowStyle="None" ResizeMode="NoResize" PreviewMouseLeftButtonDown="Window_PreviewMouseLeftButtonDown" PreviewMouseMove="Window_PreviewMouseMove" PreviewMouseLeftButtonUp="Window_PreviewMouseLeftButtonUp">
+        Title="MainWindow" Height="148" Width="240" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" PreviewMouseLeftButtonDown="Window_PreviewMouseLeftButtonDown" PreviewMouseMove="Window_PreviewMouseMove" PreviewMouseLeftButtonUp="Window_PreviewMouseLeftButtonUp"
+        TouchDown="Window_TouchDown" TouchMove="Window_TouchMove" TouchUp="Window_TouchUp">
     <Window.Resources>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
